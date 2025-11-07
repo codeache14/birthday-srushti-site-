@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Pookiee 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Fredoka One', cursive; }
+    body, html { width: 100%; height: 100%; overflow: hidden; }
+    .page {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      text-align: center;
+      background: linear-gradient(to bottom right, #ffc6ff, #a0c4ff);
+      color: #333;
+      padding: 2rem;
+      position: relative;
+    }
+    .active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    h1, p { margin-bottom: 1rem; }
+    button {
+      background: linear-gradient(to right, #fbb1bd, #a2cfff);
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    button:hover { transform: scale(1.1); }
+
+    /* PAGE 3 hearts */
+    .heart {
+      position: absolute;
+      font-size: 40px;
+      top: -60px;
+      cursor: pointer;
+      user-select: none;
+      animation: fall 4s linear forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(90vh); opacity: 1; }
+    }
+
+    .message {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      text-align: center;
+      font-size: 1.2em;
+      color: #333;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      line-height: 1.4;
+    }
+
+    .continue-text {
+      font-size: 0.9em;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    .buttons {
+      position: absolute;
+      bottom: 8%;
+      width: 100%;
+      display: none;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    #startContainer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div id="page1" class="page active">
+    <h1 style="font-size: 2rem; color:#ff4081;">Heyyy Pookiee 🎂🎉 Happy Birthday!! 🥳</h1>
+    <p style="font-size:1.2rem;">There’s a sweet surprise waiting for you below 👀💝</p>
+    <button onclick="nextPage(2)">Next ➡️</button>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div id="page2" class="page">
+    <h1>Your Message Here 💌</h1>
+    <p style="max-width: 90%; margin:auto;">Heyy Pookieeeee <br>
+Uk what!!! Aaj kisi ka toh birthday hai and woh na mera bohot special dost hai 🤭<br>
+Aaj ke din kya hi alag bolu yaar.. roj toh bolti hi hu itna.. ab toh tujhe bhi pata hai ki tu mera fav person hai ❤ Bohot annoy karta hai tu but ek secret batau?<br>
+I love it 😌 Ye sad matt hua kar tujhpe suit nahi hota teri cute smile humesha tere chehre pe rehni chahiye (your smile is my favourite okay!!!) Mil le bich bich mei warna Teri shakal bhul jaugi mei bhulne ki bimari hai mujhe 😤😭
+<br>
+Bass aaj ke liye itna hi🤭🤭 
+<br>
+Aree haaaa ye bolna kaise bhul sakti hu <br>
+Mere boondi ke laddoo I love you ❤<br>
+Pappi pan dete 😚<br>
+
+Itna accha pyara pyara padhke ab roh matt chal 😁
+<br>
+Tara par badwa wada baddi ne khakh thai jayi 🔥 
+<br>
+Bye bye have a good day ahead enjoy kar maje kar
+<br>
+Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
+    <button onclick="nextPage(3)">Next ➡️</button>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div id="page3" class="page">
+    <h1 id="page3Text" style="margin-bottom:1rem;">Catch the Falling Hearts ❤️</h1>
+    <p id="page3Desc">Click the hearts to reveal a message!</p>
+    <div id="startContainer">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+      <button id="startBtn" onclick="startHearts()">Start 💕</button>
+<br>
+    </div>
+    <div class="message" id="messageBox"></div>
+    <div class="buttons" id="buttons">
+      <button onclick="startHearts()">Restart</button>
+      <button onclick="nextPage(4)">Next</button>
+    </div>
+  </div>
+
+  <!-- PAGE 4 -->
+  <div id="page4" class="page">
+    <h1>Now vibe to this chill tune 😎🎶</h1>
+    <audio id="bdayMusic" controls>
+      <source src="birthday.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+    <button onclick="nextPage(5)">Next ➡️</button>
+  </div>
+
+  <!-- PAGE 5 -->
+  <div id="page5" class="page">
+    <h1>Hope you liked this surprise mere Boondi ke Ladoo 💗</h1>
+    <p>Enjoy your day ahead — lots of love from your KuchuPuchu 🤭😚❤️</p>
+    <canvas id="confetti"></canvas>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    function nextPage(n) {
+      document.querySelector(`#page${currentPage}`).classList.remove('active');
+      document.querySelector(`#page${n}`).classList.add('active');
+      currentPage = n;
+      if (n === 5) launchConfetti();
+    }
+
+    // PAGE 3 hearts logic
+    const messages = [
+      "Dammnnn!! You found the heart that falls for you! 🤭",
+      "Arz kiya hai... irshaad bol apne mann mei😤<br>Baaki dil fek girls ko ignore karke tune mera dil chunn liya ×2🤭<br>Damn aaj flirt nahi kiya toh kya kiya!😂",
+      "Aaj toh mere fav human ka bday hai!! 😁",
+      "Tera jeevan tere naam ki tarah Khushal ho😉",
+      "Dil kyu dhak dhak karta hai!! Kyu ye tujhpe marta hai!!?",
+      "Mere dil ki baate padhna chahta hai haa naughtyyyy 😁",
+      "Lots of love ❣️"
+    ];
+
+    let currentHeart = 0;
+    const messageBox = document.getElementById("messageBox");
+    const buttons = document.getElementById("buttons");
+    const startContainer = document.getElementById("startContainer");
+    const page3Text = document.getElementById("page3Text");
+    const page3Desc = document.getElementById("page3Desc");
+
+    function startHearts() {
+      // Hide start text and button
+      startContainer.style.display = "none";
+      page3Text.style.display = "none";
+      page3Desc.style.display = "none";
+
+      messageBox.style.display = "none";
+      buttons.style.display = "none";
+      currentHeart = 0;
+      document.querySelectorAll(".heart").forEach(h => h.remove());
+      dropNextHeart();
+    }
+
+    function dropNextHeart() {
+      if (currentHeart >= messages.length) {
+        buttons.style.display = "flex";
+        return;
+      }
+
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💗";
+      heart.style.left = Math.random() * 80 + "vw";
+      document.getElementById('page3').appendChild(heart);
+
+      heart.addEventListener("click", (e) => {
+        e.stopPropagation();
+        heart.remove();
+        showMessage(messages[currentHeart]);
+        currentHeart++;
+      });
+    }
+
+    function showMessage(text) {
+      messageBox.innerHTML = text + '<div class="continue-text">Click anywhere to continue</div>';
+      messageBox.style.display = "block";
+
+      const handler = () => {
+        messageBox.style.display = "none";
+        document.body.removeEventListener("click", handler);
+        dropNextHeart();
+      };
+      document.body.addEventListener("click", handler);
+    }
+
+    // PAGE 5 confetti
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti');
+      const ctx = canvas.getContext('2d');
+      const pieces = [];
+      const colors = ['#ff9ff3', '#feca57', '#ff6b6b', '#48dbfb', '#1dd1a1'];
+      let W = canvas.width = window.innerWidth;
+      let H = canvas.height = window.innerHeight;
+
+      for (let i = 0; i < 100; i++) {
+        pieces.push({
+          x: Math.random() * W,
+          y: Math.random() * H - H,
+          w: 10,
+          h: 10,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speed: Math.random() * 3 + 2
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        pieces.forEach(p => {
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.w, p.h);
+        });
+      }
+
+      function update() {
+        pieces.forEach(p => {
+          p.y += p.speed;
+          if (p.y > H) p.y = -10;
+        });
+      }
+
+      function loop() {
+        draw(); update();
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+  </script>
+</body>
+</html>
