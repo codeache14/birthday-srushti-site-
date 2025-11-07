@@ -7,11 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Fredoka One', cursive; }
-    body, html { width: 100%; height: 100%; overflow: hidden; }
+    body, html { width: 100%; min-height: 100vh; }
     .page {
       display: none;
       width: 100%;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
       background: linear-gradient(to bottom right, #ffc6ff, #a0c4ff);
       color: #333;
@@ -31,7 +31,7 @@
     }
     button:hover { transform: scale(1.1); }
 
-    /* PAGE 3 hearts */
+    /* Heart game styles */
     .heart {
       position: absolute;
       font-size: 40px;
@@ -40,12 +40,10 @@
       user-select: none;
       animation: fall 4s linear forwards;
     }
-
     @keyframes fall {
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(90vh); opacity: 1; }
     }
-
     .message {
       position: absolute;
       bottom: 20%;
@@ -62,13 +60,11 @@
       display: none;
       line-height: 1.4;
     }
-
     .continue-text {
       font-size: 0.9em;
       color: #555;
       margin-top: 8px;
     }
-
     .buttons {
       position: absolute;
       bottom: 8%;
@@ -76,13 +72,6 @@
       display: none;
       justify-content: center;
       gap: 15px;
-    }
-
-    #startContainer {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
 
     canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -98,44 +87,30 @@
   </div>
 
   <!-- PAGE 2 -->
-  <div id="page2" class="page">
-   
-    <p style="max-width: 90%; margin:auto;">Heyy Pookieeeee <br>
-Uk what!!! Aaj kisi ka toh birthday hai and woh na mera bohot special dost hai 🤭<br>
-Aaj ke din kya hi alag bolu yaar.. roj toh bolti hi hu itna.. ab toh tujhe bhi pata hai ki tu mera fav person hai ❤ Bohot annoy karta hai tu but ek secret batau?<br>
-I love it 😌 Ye sad matt hua kar tujhpe suit nahi hota teri cute smile humesha tere chehre pe rehni chahiye (your smile is my favourite okay!!!) Mil le bich bich mei warna Teri shakal bhul jaugi mei bhulne ki bimari hai mujhe 😤😭
-<br>
-Bass aaj ke liye itna hi🤭🤭 
-<br>
-Aree haaaa ye bolna kaise bhul sakti hu <br>
-Mere boondi ke laddoo I love you ❤<br>
-Pappi pan dete 😚<br>
-
-Itna accha pyara pyara padhke ab roh matt chal 😁
-<br>
-Tara par badwa wada baddi ne khakh thai jayi 🔥 
-<br>
-Bye bye have a good day ahead enjoy kar maje kar
-<br>
-Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
+  <div id="page2" class="page" style="overflow-y:auto;">
+    <h1>Straight from my Heart 💌</h1>
+    <p style="max-width: 90%; margin:auto; line-height:1.5;">
+      Heyy Pookieeeee <br>
+      Uk what!!! Aaj kisi ka toh birthday hai and woh na mera bohot special dost hai 🤭<br>
+      Aaj ke din kya hi alag bolu yaar.. roj toh bolti hi hu itna.. ab toh tujhe bhi pata hai ki tu mera fav person hai ❤️ Bohot annoy karta hai tu but ek secret batau?<br>
+      I love it 😌 Ye sad matt hua kar tujhpe suit nahi hota teri cute smile humesha tere chehre pe rehni chahiye (your smile is my favourite okay!!!) Mil le bich bich mei warna Teri shakal bhul jaugi mei bhulne ki bimari hai mujhe 😤😭<br><br>
+      Bass aaj ke liye itna hi🤭🤭 <br><br>
+      Aree haaaa ye bolna kaise bhul sakti hu <br>
+      Mere boondi ke laddoo I love you ❤️<br>
+      Pappi pan dete 😚<br><br>
+      Itna accha pyara pyara padhke ab roh matt chal 😁<br><br>
+      Tara par badwa wada baddi ne khakh thai jayi 🔥 <br><br>
+      Bye bye have a good day ahead enjoy kar maje kar <br><br>
+      Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈
+    </p>
     <button onclick="nextPage(3)">Next ➡️</button>
   </div>
 
   <!-- PAGE 3 -->
   <div id="page3" class="page">
-    <h1 id="page3Text" style="margin-bottom:1rem;">Catch the Falling Hearts ❤️</h1>
-    <p id="page3Desc">Click the hearts to reveal a message!</p>
-    <div id="startContainer">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-      <button id="startBtn" onclick="startHearts()">Start 💕</button>
-<br>
-    </div>
+    <h1 id="startText" style="margin-bottom:1rem;">Catch the Falling Hearts ❤️</h1>
+    <p id="introText">Click the hearts to reveal a message!</p>
+    <button id="startBtn" onclick="startHearts()" style="margin-top:1rem;">Start 💕</button>
     <div class="message" id="messageBox"></div>
     <div class="buttons" id="buttons">
       <button onclick="startHearts()">Restart</button>
@@ -145,7 +120,7 @@ Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
 
   <!-- PAGE 4 -->
   <div id="page4" class="page">
-    <h1>Now vibe to this chill tune 😎🎶</h1>
+    <h1>Now vibe to this😎🎶</h1>
     <audio id="bdayMusic" controls>
       <source src="birthday.mp3" type="audio/mp3">
       Your browser does not support the audio element.
@@ -170,7 +145,7 @@ Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
     }
 
     // PAGE 3 hearts logic
-    const messages = [
+    const heartMessages = [
       "Dammnnn!! You found the heart that falls for you! 🤭",
       "Arz kiya hai... irshaad bol apne mann mei😤<br>Baaki dil fek girls ko ignore karke tune mera dil chunn liya ×2🤭<br>Damn aaj flirt nahi kiya toh kya kiya!😂",
       "Aaj toh mere fav human ka bday hai!! 😁",
@@ -183,16 +158,14 @@ Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
     let currentHeart = 0;
     const messageBox = document.getElementById("messageBox");
     const buttons = document.getElementById("buttons");
-    const startContainer = document.getElementById("startContainer");
-    const page3Text = document.getElementById("page3Text");
-    const page3Desc = document.getElementById("page3Desc");
+    const startBtn = document.getElementById("startBtn");
+    const startText = document.getElementById("startText");
+    const introText = document.getElementById("introText");
 
     function startHearts() {
-      // Hide start text and button
-      startContainer.style.display = "none";
-      page3Text.style.display = "none";
-      page3Desc.style.display = "none";
-
+      startBtn.style.display = "none";
+      startText.style.display = "none";
+      introText.style.display = "none";
       messageBox.style.display = "none";
       buttons.style.display = "none";
       currentHeart = 0;
@@ -201,7 +174,7 @@ Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
     }
 
     function dropNextHeart() {
-      if (currentHeart >= messages.length) {
+      if (currentHeart >= heartMessages.length) {
         buttons.style.display = "flex";
         return;
       }
@@ -210,12 +183,12 @@ Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
       heart.classList.add("heart");
       heart.textContent = "💗";
       heart.style.left = Math.random() * 80 + "vw";
-      document.getElementById('page3').appendChild(heart);
+      document.body.appendChild(heart);
 
       heart.addEventListener("click", (e) => {
         e.stopPropagation();
         heart.remove();
-        showMessage(messages[currentHeart]);
+        showMessage(heartMessages[currentHeart]);
         currentHeart++;
       });
     }
@@ -242,14 +215,7 @@ Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
       let H = canvas.height = window.innerHeight;
 
       for (let i = 0; i < 100; i++) {
-        pieces.push({
-          x: Math.random() * W,
-          y: Math.random() * H - H,
-          w: 10,
-          h: 10,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          speed: Math.random() * 3 + 2
-        });
+        pieces.push({x: Math.random() * W, y: Math.random() * H - H, w: 10, h: 10, color: colors[Math.floor(Math.random() * colors.length)], speed: Math.random() * 3 + 2});
       }
 
       function draw() {
@@ -276,4 +242,3 @@ Lotsssss of love from yours Kaleshi Kuchupuchu 🩷😈<br></p>
   </script>
 </body>
 </html>
-
